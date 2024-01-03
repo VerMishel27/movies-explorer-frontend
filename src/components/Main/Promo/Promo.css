@@ -1,0 +1,99 @@
+.promo {
+  margin: 0 auto;
+  background-color: rgba(7, 48, 66, 1);
+}
+
+.promo__block {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 100%;
+  min-height: 630px;
+}
+
+.promo__title {
+  margin: 0 auto;
+  padding: 0;
+  padding-top: 183px;
+  padding-bottom: 60px;
+  font-size: 31px;
+  line-height: 39px;
+  font-weight: 400;
+  font-family: "Inter", Arial, sans-serif;
+  text-align: center;
+  min-width: 300px;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: -0.9px;
+}
+
+.promo__logo {
+  margin: 0 auto;
+  background-image: url("../../../images/promo-img.png");
+  opacity: 70%;
+  min-height: 230px;
+  min-width: 320px;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+
+@media (min-width: 321px) and (max-width: 768px) {
+  .promo__block {
+    height: calc(630px + (844 - 630) * ((100vw - 321px) / (768 - 321)));
+  }
+  .promo__title {
+    width: calc(300px + (680 - 300) * ((100vw - 321px) / (768 - 321)));
+    line-height: calc(39px + (52 - 39) * ((100vw - 321px) / (768 - 321)));
+    font-size: calc(31px + (40 - 31) * ((100vw - 321px) / (768 - 321)));
+    padding-top: calc(183px + (300 - 183) * ((100vw - 321px) / (768 - 321)));
+    padding-bottom: calc(60px + (140 - 60) * ((100vw - 321px) / (768 - 321)));
+  }
+  .promo__logo {
+    width: calc(320px + (680 - 320) * ((100vw - 321px) / (768 - 321)));
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1280px) {
+  .promo__block {
+    min-height: calc(844px + (560 - 844) * ((100vw - 769px) / (1280 - 769)));
+  }
+  .promo__logo {
+    width: calc(680px + (722 - 680) * ((100vw - 769px) / (1280 - 769)));
+    height: calc(230px + (244 - 230) * ((100vw - 769px) / (1280 - 769)));
+    margin-right: calc(44px + (70 - 44) * ((100vw - 769px) / (1280 - 769)));
+  }
+  .promo__title {
+    margin-left: calc(44px + (70 - 44) * ((100vw - 769px) / (1280 - 769)));
+    width: calc(680px + (626 - 680) * ((100vw - 769px) / (1280 - 769)));
+    padding-top: calc(300px + (50 - 300) * ((100vw - 769px) / (1280 - 769)));
+    padding-bottom: calc(
+      140px + (102 - 140) * ((100vw - 769px) / (1280 - 769))
+    );
+    text-align: left;
+    line-height: 52px;
+    font-size: 40px;
+    text-wrap: wrap;
+  }
+}
+
+@media (min-width: 1281px) {
+  .promo__block {
+    min-height: 560px;
+  }
+  .promo__logo {
+    max-width: 722px;
+    min-height: 244px;
+    margin-right: 70px;
+  }
+  .promo__title {
+    max-width: 626px;
+    margin-left: 70px;
+    padding-top: 50px;
+    padding-bottom: 102px;
+    text-align: left;
+    line-height: 52px;
+    font-size: 40px;
+    text-wrap: wrap;
+  }
+}

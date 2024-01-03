@@ -1,0 +1,9 @@
+.saved-movies {
+    margin: 0 auto;
+    background-color: rgba(32, 32, 32, 1);
+    min-height: 100vh;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
