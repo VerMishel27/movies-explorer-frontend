@@ -22,12 +22,12 @@
   text-align: center;
   min-width: 300px;
   color: rgba(255, 255, 255, 1);
-  letter-spacing: -0.9px;
+  letter-spacing: -1.7px;
 }
 
 .promo__logo {
   margin: 0 auto;
-  background-image: url("../../../images/promo-img.png");
+  background-image: url("../../../images/promo-img.svg");
   opacity: 70%;
   min-height: 230px;
   min-width: 320px;

@@ -14,8 +14,18 @@
 }
 
 .form__logo {
-  max-width: 38px;
+  min-width: 38px;
   min-height: 38px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  background-image: url(../../images/logoHeader.svg);
+}
+
+.form__logo:hover {
+  opacity: 70%;
+  cursor: pointer;
 }
 
 .form__title {
@@ -72,7 +82,7 @@
   font-family: "Inter", Arial, sans-serif;
   width: 100%;
   min-height: 27px;
-  border-bottom: 1px solid rgba(66, 66, 66, 1);
+  /* border-bottom: 1px solid rgba(66, 66, 66, 1); */
 }
 
 .form__input {
@@ -89,6 +99,13 @@
   font-weight: 400;
   min-height: 17px;
   cursor: pointer;
+  outline: none;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(66, 66, 66, 1);
+}
+
+.form__input:focus {
+  border-bottom: 1px solid rgba(66, 133, 244, 1);
 }
 
 .form__navigate-block {

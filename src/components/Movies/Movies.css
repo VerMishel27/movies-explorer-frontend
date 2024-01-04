@@ -3,6 +3,7 @@
     background-color: rgba(32, 32, 32, 1);
     min-height: 100vh;
     min-width: 320px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,6 +26,10 @@
     color: rgba(255, 255, 255, 1);
     text-align: center;
     cursor: pointer;
+}
+
+.movies__button-more-cards:hover {
+    opacity: 70%;
 }
 
 @media (min-width: 321px) and (max-width: 768px) {

@@ -1,24 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
-import iconMain from "../../images/header-icon-main.svg";
 import { Navigate, Routes, Route, useNavigate } from "react-router-dom";
-
-// const [noAuthorized, setAuthorized] = useState(false);
-
-// const mobileAuthorized = function () {
-//   setAuthorized(true);
-// };
-
-// const headerLogin = (
-//   <div className="header__right-block">
-//     <button className="header__register-button">Регистрация</button>
-//     <button className="header__login-button">Войти</button>
-//   </div>
-// );
-
-// const headerAuthorized = (
-//     <img src={iconMain} alt="Меню"/>
-// )
 
 function Header({
   buttonReg,
@@ -26,19 +8,11 @@ function Header({
   myProfile,
   saveMovies,
   movies,
-  loggedIn,
-  main
+  loggedIn
 }) {
   const navigate = useNavigate("");
 
   const [isOpen, setIsOpen] = useState(false);
-  // const [main, setMain] = useState(false);
-
-  // useEffect(() => {
-  //   if (navigate("/")) {
-  //     setMain(true);
-  //   }
-  // }, [navigate("/")]);
 
   function isOpenMenu() {
     setIsOpen(true);
@@ -49,54 +23,56 @@ function Header({
   }
 
   const burgerMenu = (
-    <div className={`header__menu ${isOpen ? "header__menu_opened" : ""}`}>
-      <button
-        onClick={closeMenu}
-        className="header__close-menu"
-        type="button"
-      ></button>
-      <div className="header__menu-links">
+    <div className={`header__menu-block ${isOpen ? "header__menu_opened" : ""}`}>
+      <div className="header__menu">
         <button
-          onClick={() => {
-            navigate("/");
-          }}
+          onClick={closeMenu}
+          className="header__close-menu"
           type="button"
-          className="header__button-main"
-        >
-          Главная
-        </button>
-        <button
-          onClick={() => {
-            navigate("/movies");
-          }}
-          className="header__movies-menu"
-        >
-          Фильмы
-        </button>
-        <button
-          className="header__saved-movies-menu"
-          onClick={() => {
-            navigate("/saved-movies");
-          }}
-        >
-          Сохранённые фильмы
-        </button>
-      </div>
-      <div className="header__my-profile header__my-profile_menu">
-        <button
-          onClick={() => {
-            navigate("/profile");
-          }}
-          className="header__profile"
-        >
-          Аккаунт
-        </button>
-        <button
-          onClick={() => {
-            navigate("/profile");
-          }}
-          className="header__icon-profile"
         ></button>
+        <div className="header__menu-links">
+          <button
+            onClick={() => {
+              navigate("/");
+            }}
+            type="button"
+            className="header__button-main"
+          >
+            Главная
+          </button>
+          <button
+            onClick={() => {
+              navigate("/movies");
+            }}
+            className="header__movies-menu"
+          >
+            Фильмы
+          </button>
+          <button
+            className="header__saved-movies-menu"
+            onClick={() => {
+              navigate("/saved-movies");
+            }}
+          >
+            Сохранённые фильмы
+          </button>
+        </div>
+        <div className="header__my-profile header__my-profile_menu">
+          <button
+            onClick={() => {
+              navigate("/profile");
+            }}
+            className="header__profile"
+          >
+            Аккаунт
+          </button>
+          <button
+            onClick={() => {
+              navigate("/profile");
+            }}
+            className="header__icon-profile"
+          ></button>
+        </div>
       </div>
     </div>
   );
@@ -115,7 +91,7 @@ function Header({
           {movies}
           {saveMovies}
         </div>
-        <div className="header__right-block">
+        <nav className="header__right-block">
           <button
             onClick={isOpenMenu}
             type="button"
@@ -127,7 +103,7 @@ function Header({
           {buttonLogin}
           {myProfile}
           {/* {iconProfile} */}
-        </div>
+        </nav>
       </div>
       {burgerMenu}
     </header>

@@ -1,6 +1,7 @@
 .profile {
   background-color: rgba(32, 32, 32, 1);
   min-height: 100vh;
+  min-width: 320px;
 }
 
 .profile__form {
@@ -58,6 +59,11 @@
   font-weight: 400;
   cursor: pointer;
   text-align: right;
+  outline: none;
+}
+
+.profile__input:focus {
+  border-bottom: 1px solid rgba(66, 133, 244, 1);
 }
 
 .profile__submit-button {
@@ -77,6 +83,10 @@
   cursor: pointer;
 }
 
+.profile__submit-button:hover {
+  opacity: 70%;
+}
+
 .profile__exit-button {
   margin: 0;
   margin-top: 16px;
@@ -93,6 +103,10 @@
   color: rgba(238, 52, 101, 1);
   text-align: center;
   cursor: pointer;
+}
+
+.profile__exit-button:hover {
+  opacity: 70%;
 }
 
 @media (min-width: 321px) and (max-width: 768px) {

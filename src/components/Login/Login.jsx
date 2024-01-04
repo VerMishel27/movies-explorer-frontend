@@ -25,7 +25,7 @@ function Login() {
     <Form title="Рады видеть!" buttonTitle="Войти" visibility={visibility}>
       <label className="form__label">
         E-mail
-        <input type="email" className="form__input" value={email} required />
+        <input type="email" className="form__input" value={email} placeholder="movies@yandex.ru" required />
       </label>
       <label className="form__label">
         Пароль
@@ -34,6 +34,8 @@ function Login() {
           className="form__input"
           value={password}
           minLength={8}
+          maxLength={30}
+          placeholder="passsword"
           required
         />
       </label>

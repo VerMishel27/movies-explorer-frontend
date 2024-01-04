@@ -24,7 +24,8 @@
   margin-top: 80px;
   padding: 0;
   border: 0;
-  min-width: 300px;
+  max-width: 300px;
+  width: 100%;
   min-height: 72px;
   background-color: rgba(47, 47, 47, 1);
   border-radius: 9px;
@@ -43,6 +44,11 @@
   width: 100%;
   margin-left: 19px;
   color: rgba(255, 255, 255, 1);
+  outline: none;
+}
+
+.search-form__input:focus {
+  border-bottom: 1px solid rgba(66, 133, 244, 1);
 }
 
 .search-form__submit-button {
@@ -98,6 +104,10 @@
   transition-duration: 300ms;
 }
 
+.search-form__switch:hover {
+  opacity: 70%;
+}
+
 .search-form__switch::after {
   content: "";
   min-height: 14px;
@@ -123,7 +133,10 @@
   min-width: 34px;
   margin-left: 19px;
   margin-right: 10px;
-  background-image: url(../../images/search-icon.png);
+  background-image: url(../../images/search-icon.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
 }
 
 .search-form__switch-block_pc {
@@ -131,7 +144,7 @@
     margin: 0;
     padding: 10px 0;
     gap: 15px;
-    padding-left: 15px;
+    padding-left: 19px;
     border-left: 1px solid rgba(80, 80, 80, 1);
     margin-right: 20px;
 }
@@ -159,7 +172,7 @@
         margin-bottom: calc(40px + (70 - 40) * ((100vw - 321px) / (768 - 321)));
     }
   .search-form__label {
-    min-width: calc(300px + (708 - 300) * ((100vw - 321px) / (768 - 321)));
+    max-width: calc(300px + (708 - 300) * ((100vw - 321px) / (768 - 321)));
   }
   .search-form::after {
     min-width: calc(292px + (708 - 292) * ((100vw - 321px) / (768 - 321)));
@@ -189,7 +202,8 @@
         min-height: calc(272px + (222 - 272) * ((100vw - 769px) / (1280 - 769)));
     }
     .search-form__label {
-        min-width: calc(708px + (1140 - 708) * ((100vw - 769px) / (1280 - 769)));
+        max-width: calc(708px + (1140 - 708) * ((100vw - 769px) / (1280 - 769)));
+        margin-top: calc(80px + (70 - 80) * ((100vw - 769px) / (1280 - 769)));
     }
     .search-form::after {
         min-width: calc(708px + (1140 - 708) * ((100vw - 769px) / (1280 - 769)));
@@ -210,7 +224,8 @@
         min-height: 222px;
     }
     .search-form__label {
-        min-width: 1140px;
+        max-width: 1140px;
+        margin-top: 70px;
     }
     .search-form::after {
         min-width: 1140px;
@@ -218,7 +233,7 @@
     }
     .search-form__switch-block_pc {
         margin-right: 30px;
-        margin-left: 29px;
+        padding-left: 29px;
         gap: 14px;
     }
     .search-form__submit-button {

@@ -35,6 +35,10 @@
   cursor: pointer;
 }
 
+.header__logo:hover {
+  opacity: 70%;
+}
+
 .header__right-block {
   margin-right: 14px;
   display: flex;
@@ -178,21 +182,35 @@
   display: none;
 }
 
+.header__burger-menu:hover {
+  opacity: 70%;
+}
+
 .header__burger-menu_loggedIn {
   display: block;
 }
 
-.header__menu {
+.header__menu-block {
   position: absolute;
   top: 0;
+  left: 0;
+  bottom: 0;
   right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  justify-content: flex-end;
+  align-items: flex-start;
+  z-index: 3;
+}
+
+.header__menu {
   background-color: rgba(32, 32, 32, 1);
   min-height: 100vh;
   min-width: 320px;
-  display: none;
+  display: flex;
   flex-direction: column;
-  /* align-content: center; */
   justify-content: space-between;
+  opacity: 1;
   z-index: 3;
 }
 
@@ -218,6 +236,10 @@
   cursor: pointer;
   top: 13.44px;
   right: 13.44px;
+}
+
+.header__close-menu:hover {
+  opacity: 70%;
 }
 
 .header__menu-links {
