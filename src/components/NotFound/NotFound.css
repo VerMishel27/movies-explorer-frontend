@@ -1,0 +1,108 @@
+.not-found {
+    background-color: rgba(32, 32, 32, 1);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.not-found__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.not-found__title {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+    line-height: 96.82px;
+    font-size: 80px;
+    font-weight: 400;
+    text-align: center;
+    font-family: "Inter", Arial, sans-serif;
+    color: rgba(255, 255, 255, 1);
+}
+
+.not-found__text {
+    margin: 0;
+    margin-bottom: 284px;
+    padding: 0;
+    line-height: 14.52px;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    font-family: "Inter", Arial, sans-serif;
+    color: rgba(255, 255, 255, 1);
+}
+
+.not-found__exit-button {
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    line-height: 14.52px;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    font-family: "Inter", Arial, sans-serif;
+    color: rgba(66, 133, 244, 1);
+    padding-bottom: 30px;
+    cursor: pointer;
+}
+
+.not-found__exit-button:hover {
+    opacity: 70%;
+}
+
+@media (min-width: 550px) {
+    .not-found {
+        justify-content: center;
+    }
+    .not-found__exit-button {
+        padding-bottom: 0;
+    }
+    .not-found__title {
+        margin-bottom: 5px;
+    }
+}
+@media (min-width: 321px) and (max-width: 768px) {
+    .not-found__title {
+        font-size: calc(80px + (140 - 80) * ((100vw - 321px) / (768 - 321)));
+        line-height: calc(96.82px + (169.43 - 96.82) * ((100vw - 321px) / (768 - 321)));
+    }
+    .not-found__text {
+        font-size: calc(12px + (16 - 12) * ((100vw - 321px) / (768 - 321)));
+        line-height: calc(14.52px + (19.36 - 14.52) * ((100vw - 321px) / (768 - 321)));
+        margin-bottom: calc(284px + (184 - 284) * ((100vw - 321px) / (768 - 321)));
+    }
+    .not-found__exit-button {
+        font-size: calc(12px + (14 - 12) * ((100vw - 321px) / (768 - 321)));
+        line-height: calc(14.52px + (16.94 - 14.52) * ((100vw - 321px) / (768 - 321)));
+    }
+}
+
+@media (min-width: 769px) {
+    .not-found__title {
+        font-size: 140px;
+        line-height: 169.43px;
+    }
+    .not-found__text {
+        font-size: 16px;
+        line-height: 19.63px;
+        margin-bottom: 184px;
+    }
+    .not-found__exit-button {
+        font-size: 14px;
+        line-height: 16.94px;
+    }
+}
+
+@media (min-width: 1050px) {
+    .not-found {
+        justify-content: flex-end;
+    }
+    .not-found__exit-button {
+        padding-bottom: 60px;
+    }
+}

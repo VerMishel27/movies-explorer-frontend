@@ -1,0 +1,8 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 100vw;
+  min-height: 100vh;
+  position: relative;
+}

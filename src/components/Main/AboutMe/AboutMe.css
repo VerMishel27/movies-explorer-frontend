@@ -1,0 +1,206 @@
+.aboutMe {
+    background-color: rgba(32, 32, 32, 1);
+}
+
+.aboutMe__block {
+    margin: 0 auto;
+    max-width: 292px;
+}
+
+.aboutMe__title {
+    margin: 0;
+    padding: 0;
+    padding-top: 70px;
+    padding-bottom: 28px;
+    margin-bottom: 60px;
+    border-bottom: 1px solid rgba(218, 218, 218, 1);
+    font-size: 18px;
+    line-height: 21.78px;
+    font-weight: 400;
+    font-family: "Inter", Arial, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: -0.4px;
+}
+
+.aboutMe__info {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 70px;
+}
+
+.aboutMe__info-student {
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutMe__img-student {
+    max-width: 292px;
+    min-height: 352px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.aboutMe__name-student {
+    margin: 0;
+    padding: 0;
+    padding-top: 40px;
+    font-size: 30px;
+    line-height: 36.31px;
+    font-weight: 400;
+    font-family: "Inter", Arial, sans-serif;
+    letter-spacing: -0.4px;
+    color: rgba(255, 255, 255, 1);
+}
+
+.aboutMe__paragraph {
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+    font-size: 11px;
+    line-height: 16px;
+    color: rgba(255, 255, 255, 1);
+    font-family: "Inter", Arial, sans-serif;
+    font-weight: 400;
+}
+
+.aboutMe__paragraph:first-of-type {
+    font-weight: 500;
+}
+
+.aboutMe__link {
+    display: block;
+    text-decoration: none;
+    line-height: 16.94px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Inter", Arial, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.aboutMe__link:hover {
+    opacity: 70%;
+}
+
+@media (min-width: 321px) and (max-width: 768px) {
+    .aboutMe__block {
+        max-width: calc(284px + (668 - 284) * ((100vw - 321px) / (768 - 321)));
+    }
+    .aboutMe__info {
+        padding-bottom: calc(70px + (91 - 70) * ((100vw - 321px) / (768 - 321)));
+    }
+    .aboutMe__title {
+        font-size: calc(18px + (22 - 18) * ((100vw - 321px) / (768 - 321)));
+        line-height: calc(21.78px + (26.63 - 21.78) * ((100vw - 321px) / (768 - 321)));
+        padding-top: calc(70px + (90 - 70) * ((100vw - 321px) / (768 - 321)));
+        padding-bottom: calc(28px + (23 - 28) * ((100vw - 321px) / (768 - 321)));
+        margin-bottom: calc(60px + (66 - 60) * ((100vw - 321px) / (768 - 321)));
+    }
+    .aboutMe__img-student {
+        max-width: calc(292px + (255 - 292) * ((100vw - 321px) / (768 - 321)));
+        min-height: calc(352px + (307 - 352) * ((100vw - 321px) / (768 - 321)));
+    }
+    .aboutMe__paragraph {
+        font-size: calc(11px + (12 - 11) * ((100vw - 321px) / (768 - 321)));
+        line-height: calc(16px + (18 - 16) * ((100vw - 321px) / (768 - 321)));
+    }
+    .aboutMe__paragraph:first-of-type {
+        padding-top: calc(20px + (16 - 20) * ((100vw - 321px) / (768 - 321)));
+    }
+    .aboutMe__name-student {
+        font-size: calc(30px + (40 - 30) * ((100vw - 321px) / (768 - 321)));
+        line-height: calc(36.31px + (40 - 36.31) * ((100vw - 321px) / (768 - 321)));
+    }
+}
+
+@media (min-width: 700px) {
+    .aboutMe__info {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        gap: 15px;
+    }
+    .aboutMe__info-student {
+        justify-content: space-between;
+    }
+    .aboutMe__name-student {
+        padding-top: 0;
+    }
+    .aboutMe__paragraph {
+        max-width: 364px;
+    }
+    .aboutMe__link {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 769px) {
+    .aboutMe__title {
+        font-size: 22px;
+        line-height: 26.63px;
+        padding-bottom: 23px;
+        margin-bottom: 66px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1280px) {
+    .aboutMe__block {
+        max-width: calc(668px + (1140 - 668) * ((100vw - 769px) / (1280 - 769)));
+      }
+      .aboutMe__info {
+        padding-bottom: calc(91px + (101 - 91) * ((100vw - 769px) / (1280 - 769)));
+      }
+      .aboutMe__title {
+        padding-top: calc(90px + (110 - 90) * ((100vw - 769px) / (1280 - 769)));
+      }
+      .aboutMe__img-student {
+        max-width: calc(255px + (270 - 255) * ((100vw - 769px) / (1280 - 769)));
+        min-height: calc(307px + (327 - 307) * ((100vw - 769px) / (1280 - 769)));
+      }
+      .aboutMe__paragraph {
+        font-size: calc(12px + (14 - 12) * ((100vw - 769px) / (1280 - 769)));
+        line-height: calc(18px + (22 - 18) * ((100vw - 769px) / (1280 - 769)));
+        padding-top: calc(20px + (26 - 20) * ((100vw - 769px) / (1280 - 769)));
+        max-width: calc(364px + (600 - 364) * ((100vw - 769px) / (1280 - 769)));
+      }
+      .aboutMe__paragraph:first-of-type {
+        font-size: calc(12px + (18 - 12) * ((100vw - 769px) / (1280 - 769)));
+        line-height: calc(18px + (20 - 18) * ((100vw - 769px) / (1280 - 769)));
+        padding-top: calc(16px + (18 - 16) * ((100vw - 769px) / (1280 - 769)));
+      }
+      .aboutMe__name-student {
+        font-size: calc(40px + (50 - 40) * ((100vw - 769px) / (1280 - 769)));
+        line-height: calc(40px + (58 - 40) * ((100vw - 769px) / (1280 - 769)));
+      }
+}
+
+@media (min-width: 1281px) {
+    .aboutMe__block {
+        max-width: 1140px;
+    }
+    .aboutMe__info {
+        padding-bottom: 101px;
+    }
+    .aboutMe__title {
+        padding-top: 110px;
+    }
+    .aboutMe__img-student {
+        max-width: 270px;
+        min-height: 327px;
+    }
+    .aboutMe__paragraph {
+        font-size: 14px;
+        line-height: 22px;
+        padding-top: 26px;
+        max-width: 600px;
+    }
+    .aboutMe__paragraph:first-of-type {
+        font-size: 18px;
+        line-height: 20px;
+        padding-top: 18px;
+    }
+    .aboutMe__name-student {
+        font-size: 50px;
+        line-height: 58px;
+    }
+}

@@ -1,0 +1,45 @@
+.movies {
+    margin: 0 auto;
+    background-color: rgba(32, 32, 32, 1);
+    min-height: 100vh;
+    min-width: 320px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.movies__button-more-cards {
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 80px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background-color: rgba(47, 47, 47, 1);
+    min-width: 240px;
+    min-height: 36px;
+    font-size: 12px;
+    line-height: 14.52px;
+    font-weight: 500;
+    font-family: "Inter", Arial, sans-serif;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    cursor: pointer;
+}
+
+.movies__button-more-cards:hover {
+    opacity: 70%;
+}
+
+@media (min-width: 321px) and (max-width: 768px) {
+    .movies__button-more-cards {
+        min-width: calc(240px + (320 - 240) * ((100vw - 321px) / (768 - 321)));
+    }
+}
+
+@media (min-width: 769px) {
+    .movies__button-more-cards {
+        min-width: 320px;
+    }
+}
