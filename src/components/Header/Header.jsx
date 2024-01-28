@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
 import "./Header.css";
-import { Navigate, Routes, Route, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Header({
   buttonReg,
@@ -11,6 +11,7 @@ function Header({
   loggedIn
 }) {
   const navigate = useNavigate("");
+  const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -78,7 +79,7 @@ function Header({
   );
 
   return (
-    <header className={`header ${loggedIn ? "header_loggedIn" : ""}`}>
+    <header className={`header ${location.pathname !== '/' ? "header_loggedIn" : ""}`}>
       <div className="header__block">
         <div className="header__left-block">
           <button
@@ -102,7 +103,6 @@ function Header({
           {buttonReg}
           {buttonLogin}
           {myProfile}
-          {/* {iconProfile} */}
         </nav>
       </div>
       {burgerMenu}
