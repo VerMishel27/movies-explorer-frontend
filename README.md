@@ -26,3 +26,8 @@
 - /images – папка с изображениями
 - /utils - папка с утилитами
 - /vendor- папка с модулями и с шрифтами
+
+
+# Pull Request: https://github.com/VerMishel27/movies-explorer-frontend/pull/2
+
+# Frontend https://movies-web.nomoredomainsmonster.ru

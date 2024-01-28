@@ -20,10 +20,8 @@ class MoviesApi {
   }
 
   searchMovies() {
-    // const token = localStorage.getItem("jwt");
     return fetch(`${this._url}`, {
       headers: {
-        // authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
     }).then(this.#onResponce);
@@ -36,5 +34,3 @@ const configApi = {
 
 const moviesApi = new MoviesApi(configApi);
 export default moviesApi;
-
-// ?query=${searchMovies}&per_page=16
