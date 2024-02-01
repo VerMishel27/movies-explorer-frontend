@@ -1,5 +1,10 @@
 export const BASE_URL = "https://api.movies-web.nomoredomainsmonster.ru";
 // export const BASE_URL = "http://localhost:3000";
+const onResponce = (res) => {
+  return res.ok
+    ? res.json()
+    : res.json().then((errData) => Promise.reject(errData));
+};
 
 export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -8,13 +13,7 @@ export const register = (name, email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, email, password }),
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((res) => {
-      return res;
-    });
+  }).then(onResponce);
 };
 
 export const authorize = (email, password) => {
@@ -26,7 +25,7 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password }),
   })
-    .then((response) => response.json())
+    .then(onResponce)
     .then((data) => {
       if (data.token) {
         localStorage.setItem("jwt", data.token);
@@ -44,9 +43,7 @@ export const getContent = (jwt) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${jwt}`,
     },
-  })
-    .then((res) => res.json())
-    .then((data) => data);
+  }).then(onResponce);
 };
 
 export const editingProfile = (name, email) => {
@@ -58,13 +55,7 @@ export const editingProfile = (name, email) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(name, email),
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((res) => {
-      return res;
-    });
+  }).then(onResponce);
 };
 
 export const getSavedMovies = () => {
@@ -75,7 +66,7 @@ export const getSavedMovies = () => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((response) => response.json());
+  }).then(onResponce);
 };
 
 export const addLikeMovies = (card) => {
@@ -87,8 +78,7 @@ export const addLikeMovies = (card) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(card),
-  })
-    .then((response) => response.json());
+  }).then(onResponce);
 };
 
 export const delLikeMovies = (movieId) => {
@@ -99,9 +89,5 @@ export const delLikeMovies = (movieId) => {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-  })
-    .then((response) => response.json())
-    .then((res) => {
-      return res;
-    });
+  }).then(onResponce);
 };

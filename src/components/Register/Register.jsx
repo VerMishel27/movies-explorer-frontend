@@ -2,7 +2,7 @@ import Form from "../Form/Form";
 import { useNavigate } from "react-router-dom";
 import useFormValidation from "../../hooks/useForm";
 
-function Register({ onRegister, errorRegister, setErrorRegister }) {
+function Register({ onRegister, errorRegister, setErrorRegister, buttonSubmitLock }) {
   const navigate = useNavigate("");
   const { values, handleChange, resetForm, errors, isValid } =
     useFormValidation();
@@ -38,6 +38,7 @@ function Register({ onRegister, errorRegister, setErrorRegister }) {
       buttonTitle="Зарегистрироваться"
       visibility={visibility}
       isValid={isValid}
+      buttonSubmitLock={buttonSubmitLock}
       errorSubmit={errorRegister}
     >
       <label className="form__label">

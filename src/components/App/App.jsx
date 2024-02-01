@@ -1,5 +1,14 @@
-import { useEffect, useState } from "react";
-import { Navigate, Routes, Route, useNavigate } from "react-router-dom";
+import {
+  useEffect,
+  useState,
+} from "react";
+import {
+  Navigate,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
@@ -18,6 +27,7 @@ import useFormValidation from "../../hooks/useForm";
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     values,
     handleChange,
@@ -29,7 +39,8 @@ function App() {
   } = useFormValidation();
   const [currentUser, setCurrentUser] = useState({}); //данные пользователя
 
-  const [movies, setMovies] = useState([]); //найденые видео по запросу
+  const [movies, setMovies] = useState([]); //найденые видео
+  const [filterSearchMovies, setFilterSearchMovies] = useState([]); // отфильтрованные видео по запросу
   const [likeActive, setLikeActive] = useState(false); //состояние кнопки like
   const [savedMovies, setSavedMovies] = useState([]); //сохраненнные видео пользователя
   const [saved, setSaved] = useState(false); //страница с сохраненными фильмами
@@ -47,7 +58,9 @@ function App() {
   const [addMovies, setAddMovies] = useState(0); //количество добавляемых карточек
   const [display, setDisplay] = useState(window.innerWidth); // ширина дисплея
 
-  const [shortFilm, setShortFilm] = useState(false); //короткометражки
+  const [shortFilm, setShortFilm] = useState(
+    localStorage.getItem("shortFilm") === "true" || false
+  ); //короткометражки
   const [shortFilmSavedMovies, setShortFilmSavedMovies] = useState(false); //короткометражки в сохраненках
 
   const [errorLogin, setErrorLogin] = useState(""); // ошибки при аунтетификации
@@ -57,15 +70,19 @@ function App() {
   const [errorSavedMovies, setErrorSavedMovies] = useState(false);
   const [dataProfileSaved, setDataProfileSaved] = useState(false);
   const [buttonSubmitProfile, setButtonSubmitProfile] = useState(false);
+  const [buttonSubmitLock, setButtonSubmitLock] = useState(false);
 
   //видимость кнопки "Ещё"
   useEffect(() => {
-    if (movies.length <= numberMovies || movies.length === 0) {
+    if (
+      filterSearchMovies.length <= numberMovies ||
+      filterSearchMovies.length === 0
+    ) {
       setLengthMovies(false);
     } else {
       setLengthMovies(true);
     }
-  }, [numberMovies, movies]);
+  }, [numberMovies, filterSearchMovies]);
 
   //добавление карточек на страницу
   const addMoreMovies = () => {
@@ -103,10 +120,25 @@ function App() {
       if (JSON.parse(localStorage.getItem("movies"))) {
         setValues({ searchMovies: localStorage.getItem("searchMovies") });
         setShortFilm(localStorage.getItem("shortFilm") === "true");
+        setFilterSearchMovies(JSON.parse(localStorage.getItem("filterMovies")));
         setMovies(JSON.parse(localStorage.getItem("movies")));
       }
     }
-  }, [loggedIn, setValues, setShortFilm, setMovies]);
+  }, [loggedIn, setValues, setShortFilm, setFilterSearchMovies, setMovies]);
+
+  //данные пользователя
+  useEffect(() => {
+    if (loggedIn) {
+      mainApi
+        .getContent(localStorage.getItem("jwt"))
+        .then((res) => {
+          setCurrentUser(res);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [loggedIn]);
 
   //сохраненные фильмы
   useEffect(() => {
@@ -114,16 +146,14 @@ function App() {
       mainApi
         .getSavedMovies()
         .then((res) => {
-          if (res.status)
-            throw new Error(
-              "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-            );
           setSavedMovies(res);
           setErrorSavedMovies(false);
         })
         .catch((err) => {
           setErrorSavedMovies(true);
-          setErrorSavedMoviesMessage(err.message);
+          setErrorSavedMoviesMessage(
+            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+          );
           console.log(err);
         });
     }
@@ -207,6 +237,12 @@ function App() {
     }
   }, [shortFilmSavedMovies]);
 
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("movies")) && !saved) {
+      filterMovies(movies);
+    }
+  }, [shortFilm, movies, saved]);
+
   //поиск в сохраненных фильмов
   useEffect(() => {
     if (values.saveMovies !== "") {
@@ -229,7 +265,7 @@ function App() {
     setLengthMovies(false);
     localStorage.setItem("searchMovies", values.searchMovies);
     localStorage.setItem("shortFilm", shortFilm);
-    setMovies([]);
+    setFilterSearchMovies([]);
     setSearchError(false);
     setSearchNoFound(false);
     searchApiMovies();
@@ -242,7 +278,8 @@ function App() {
       moviesApi
         .searchMovies()
         .then((res) => {
-          setMovies(res);
+          localStorage.setItem("movies", JSON.stringify(res));
+          setMovies(res); //movies
           filterMovies(res);
         })
         .catch((error) => {
@@ -301,15 +338,17 @@ function App() {
 
     if (!saved) {
       if (movies.length === 0) {
+        setFilterSearchMovies([]);
         setSearchNoFound(true);
       } else {
-        setMovies(movies);
-        // setMovieFilter(movies);
-        localStorage.setItem("movies", JSON.stringify(movies));
+        setSearchNoFound(false);
+        setFilterSearchMovies(movies);
+        localStorage.setItem("filterMovies", JSON.stringify(movies));
       }
     } else {
       setFilterSavedMovies(movies);
     }
+    localStorage.setItem("shortFilm", shortFilm);
   }
 
   //контроль состояния submitProfile
@@ -339,18 +378,21 @@ function App() {
     return mainApi
       .editingProfile(data)
       .then((data) => {
-        if (data.statusCode === 400)
-          throw new Error("Передан некорректный email.");
-        if (data.status === 400) throw new Error(data.message);
-        if (data.status)
-          throw new Error("При сохранении данных произошла ошибка.");
         setCurrentUser(data);
         setErrorProfile("Данные успешно сохранены.");
         setDataProfileSaved(true);
         setButtonSubmitProfile(false);
       })
       .catch((err) => {
-        setErrorProfile(err.message);
+        if (err.statusCode === 400) {
+          setErrorProfile("Передан некорректный email.");
+        }
+        if (err.status === 400) {
+          setErrorProfile(err.message);
+        }
+        if (err.status) {
+          setErrorProfile("При сохранении данных произошла ошибка.");
+        }
         setDataProfileSaved(false);
         setButtonSubmitProfile(false);
         setIsValid(false);
@@ -359,13 +401,32 @@ function App() {
   };
 
   const auth = (jwt) => {
-    return mainApi.getContent(jwt).then((data) => {
-      if (data) {
-        setLoggedIn(true);
-        setCurrentUser(data);
-        navigate("/movies");
-      }
-    });
+    return mainApi
+      .getContent(jwt)
+      .then((data) => {
+        if (data) {
+          if (data.status) throw new Error(data.message);
+          setLoggedIn(true);
+          setCurrentUser(data);
+
+          const signin = "/signin";
+          const signup = "/signup";
+          const savedMovies = "/saved-movies";
+          if (location.pathname === signin || location.pathname === signup) {
+            navigate("/movies");
+          } else {
+            if (location.pathname === savedMovies) {
+              setSaved(true);
+              navigate("/saved-movies");
+            } else {
+              navigate(location.pathname);
+            }
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   useEffect(() => {
@@ -378,6 +439,7 @@ function App() {
 
   //регистрация пользователя
   const onRegister = ({ name, email, password }, resetForm) => {
+    setButtonSubmitLock(true);
     return mainApi
       .register(name, email, password)
 
@@ -386,27 +448,35 @@ function App() {
           onLogin({ email: res.email, password: password }, resetForm);
           setErrorRegister("");
         }
-        if (res.status === 409) throw new Error(res.message);
-        if (res.statusCode === 400)
-          throw new Error(
-            "Переданы некорректные данные при создании пользователя."
-          );
-        if (res.status === 400) throw new Error(res.message);
-        if (res.status)
-          throw new Error("При регистрации пользователя произошла ошибка.");
       })
       .then(() => {
         resetForm;
       })
       .then(() => navigate("/signin"))
       .catch((error) => {
+        if (error.status === 409) {
+          setErrorRegister(error.message);
+        }
+        if (error.statusCode) {
+          setErrorRegister(
+            "Переданы некорректные данные при создании пользователя."
+          );
+        }
+        if (error.status === 400) {
+          setErrorRegister(error.message);
+        }
+        if (error.status) {
+          setErrorRegister("При регистрации пользователя произошла ошибка.");
+        }
+
         console.log(error.message);
-        setErrorRegister(error.message);
-      });
+      })
+      .finally(() => setButtonSubmitLock(false));
   };
 
   //аунтетификация пользователя
   const onLogin = ({ email, password }, resetForm) => {
+    setButtonSubmitLock(true);
     return mainApi
       .authorize(email, password)
       .then((res) => {
@@ -421,11 +491,12 @@ function App() {
       .then(resetForm)
       .then(() => navigate("/movies"))
       .catch((error) => {
-        if (error) {
-          console.log(error.message);
-          setErrorLogin(error.message);
+        if (error.statusCode) {
+          setErrorLogin("Неправильное имя пользователя или пароль");
         }
-      });
+        console.log(error.message);
+      })
+      .finally(() => setButtonSubmitLock(false));
   };
 
   //выход пользователя
@@ -434,6 +505,7 @@ function App() {
     localStorage.removeItem("movies");
     localStorage.removeItem("shortFilm");
     localStorage.removeItem("searchMovies");
+    localStorage.removeItem("filterMovies");
 
     setShortFilm(false);
     setLoggedIn(false);
@@ -518,9 +590,9 @@ function App() {
 
     return (
       <Routes>
-        <Route path="*" element />
-        <Route path="/signin" element />
-        <Route path="/signup" element />
+        <Route path="*" />
+        <Route path="/signin" />
+        <Route path="/signup" />
         <Route
           path="/"
           element={
@@ -576,9 +648,9 @@ function App() {
   const Footers = () => {
     return (
       <Routes>
-        <Route path="*" element />
-        <Route path="/signin" element />
-        <Route path="/signup" element />
+        <Route path="*" />
+        <Route path="/signin" />
+        <Route path="/signup" />
         <Route path="/" element={<Footer />} />
         <Route path="/movies" element={<Footer />} />
         <Route path="/saved-movies" element={<Footer />} />
@@ -598,6 +670,7 @@ function App() {
               <Register
                 errorRegister={errorRegister}
                 setErrorRegister={setErrorRegister}
+                buttonSubmitLock={buttonSubmitLock}
                 onRegister={onRegister}
               />
             }
@@ -608,6 +681,7 @@ function App() {
               <Login
                 setErrorLogin={setErrorLogin}
                 errorLogin={errorLogin}
+                buttonSubmitLock={buttonSubmitLock}
                 onLogin={onLogin}
               />
             }
@@ -641,7 +715,7 @@ function App() {
                 handleChange={handleChange}
                 errors={errors}
                 isValid={isValid}
-                movies={movies}
+                movies={filterSearchMovies}
                 shortFilm={shortFilm}
                 onButtonShortFilm={onButtonShortFilm}
                 searchError={searchError}

@@ -10,6 +10,7 @@ function Form({
   visibility,
   isValid,
   errorSubmit,
+  buttonSubmitLock,
 }) {
   const navigate = useNavigate("");
 
@@ -30,9 +31,9 @@ function Form({
             {errorSubmit}
           </span>
           <button
-            disabled={!isValid}
+            disabled={!isValid || buttonSubmitLock}
             className={`form__submit-button ${
-              !isValid ? "form__submit-button_noValid" : ""
+              !isValid || buttonSubmitLock ? "form__submit-button_noValid" : ""
             }`}
             type="submit"
           >

@@ -2,7 +2,7 @@ import Form from "../Form/Form";
 import { useNavigate } from "react-router-dom";
 import useFormValidation from "../../hooks/useForm";
 
-function Login({ onLogin, errorLogin, setErrorLogin }) {
+function Login({ onLogin, errorLogin, setErrorLogin, buttonSubmitLock }) {
   const { values, handleChange, resetForm, errors, isValid } =
     useFormValidation();
 
@@ -36,6 +36,7 @@ function Login({ onLogin, errorLogin, setErrorLogin }) {
       buttonTitle="Войти"
       visibility={visibility}
       isValid={isValid}
+      buttonSubmitLock={buttonSubmitLock}
       errorSubmit={errorLogin}
     >
       <label className="form__label">
