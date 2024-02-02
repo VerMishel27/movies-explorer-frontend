@@ -10,9 +10,7 @@
   display: grid;
   column-gap: 30px;
   row-gap: 24px;
-  justify-content: center;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
 }
 
 @media (min-width: 321px) and (max-width: 768px) {

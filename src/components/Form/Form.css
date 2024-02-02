@@ -9,7 +9,6 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
 }
 
@@ -47,9 +46,16 @@
   align-self: center;
 }
 
+.form__submit-block {
+  margin-top: 157px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
 .form__submit-button {
   margin: 0;
-  margin-top: 157px;
   padding: 0;
   border: 0;
   border-radius: 3px;
@@ -71,8 +77,16 @@
   opacity: 80%;
 }
 
+.form__submit-button_noValid {
+  cursor: unset;
+  background-color: rgb(134, 134, 134, 1);
+}
+.form__submit-button_noValid:hover {
+  opacity: 100%;
+}
+
 .form__label {
-  margin-bottom: 24px;
+  margin-bottom: 6px;
   display: flex;
   flex-direction: column;
   line-height: 12.1px;
@@ -81,14 +95,13 @@
   color: rgba(139, 139, 139, 1);
   font-family: "Inter", Arial, sans-serif;
   width: 100%;
-  min-height: 27px;
-  /* border-bottom: 1px solid rgba(66, 66, 66, 1); */
+  min-height: 73px;
 }
 
 .form__input {
   margin: 0;
   margin-top: 5px;
-  margin-bottom: 10px;
+  
   padding: 0;
   border: 0;
   color: rgba(255, 255, 255, 1);
@@ -106,6 +119,10 @@
 
 .form__input:focus {
   border-bottom: 1px solid rgba(66, 133, 244, 1);
+}
+
+.form__input_error {
+  color: rgba(238, 52, 101, 1);
 }
 
 .form__navigate-block {
@@ -144,6 +161,22 @@
   opacity: 70%;
 }
 
+.form__error {
+  margin-top: 6px;
+  color: rgba(238, 52, 101, 1);
+  line-height: 12.1px;
+  font-size: 10px;
+  font-weight: 400;
+  font-family: "Inter", Arial, sans-serif;
+  max-height: 12px;
+}
+
+.form__error_margin-bottom {
+  margin-top: 0;
+  margin-bottom: 6px;
+  min-height: 12px;
+}
+
 @media (min-width: 321px) and (max-width: 768px) {
     .form__block {
         padding-top: calc(56px + (232 - 56) * ((100vw - 321px) / (768 - 321)));
@@ -163,8 +196,10 @@
   .form__children {
     max-width: calc(260px + (396 - 260) * ((100vw - 321px) / (768 - 321)));
   }
-  .form__submit-button {
+  .form__submit-block {
     margin-top: calc(157px + (69 - 157) * ((100vw - 321px) / (768 - 321)));
+  }
+  .form__submit-button {
     max-width: calc(260px + (396 - 260) * ((100vw - 321px) / (768 - 321)));
     font-size: calc(12px + (14 - 12) * ((100vw - 321px) / (768 - 321)));
     line-height: calc(
@@ -195,8 +230,10 @@
   .form__children {
     max-width: 396px;
   }
-  .form__submit-button {
+  .form__submit-block {
     margin-top: 69px;
+  }
+  .form__submit-button {
     max-width: 396px;
     font-size: 14px;
     line-height: 16.94px;

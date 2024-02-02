@@ -10,6 +10,7 @@ function Portfolio() {
             <a
               target="_blank"
               className="portfolio__link-name"
+              rel="noreferrer" 
               href="https://github.com/VerMishel27/how-to-learn.git"
             >
               Статичный сайт
@@ -20,6 +21,7 @@ function Portfolio() {
             <a
               target="_blank"
               className="portfolio__link-name"
+              rel="noreferrer" 
               href="https://github.com/VerMishel27/russian-travel.git"
             >
               Адаптивный сайт
@@ -30,6 +32,7 @@ function Portfolio() {
             <a
               target="_blank"
               className="portfolio__link-name"
+              rel="noreferrer" 
               href="https://github.com/VerMishel27/react-mesto-api-full-gha.git"
             >
               Одностраничное приложение

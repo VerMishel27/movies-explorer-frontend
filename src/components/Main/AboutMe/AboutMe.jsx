@@ -29,6 +29,7 @@ function AboutMe() {
             <a
               target="_blank"
               href="https://github.com/VerMishel27"
+              rel="noreferrer" 
               className="aboutMe__link"
             >
               Github
